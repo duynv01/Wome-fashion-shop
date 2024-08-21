@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "/yNEZrMw+ygK5QPC3A+gaXwel6MSvPyuImQnAYM5c6U=",
+  "Source": "consumer-server",
+  "BasePath": "_content/consumer-server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

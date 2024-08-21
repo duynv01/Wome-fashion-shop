@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ElkjYFjtN2piI7A2AbPEPs446cyHOcNUpRadHiRJjdY=",
+  "Source": "admin-server",
+  "BasePath": "_content/admin-server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
