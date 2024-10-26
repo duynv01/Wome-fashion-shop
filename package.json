@@ -14,7 +14,7 @@
     "dev:admin": "yarn workspace admin dev",
     "dev:consumer": "yarn workspace consumer dev",
     "dev:admin-server": "cd admin-server && dotnet run",
-    "dev:consumer-server": "cd consumer-server && dotnet run",
+    "dev:consumer-server": "cd server && dotnet run",
     "build:admin": "yarn workspace admin build",
     "build:consumer": "yarn workspace consumer build",
     "test:admin": "yarn workspace admin test",

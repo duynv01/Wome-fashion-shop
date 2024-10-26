@@ -1,11 +1,12 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import 'antd/dist/reset.css';
+// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client'; // Cập nhật import
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+const root = ReactDOM.createRoot(document.getElementById('root')); // Sử dụng createRoot
+root.render(
+  <BrowserRouter>
     <App />
-  </StrictMode>,
-)
+  </BrowserRouter>
+);

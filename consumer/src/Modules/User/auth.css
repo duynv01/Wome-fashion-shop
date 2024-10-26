@@ -1,0 +1,54 @@
+body:has(.login-container) {
+    display: flex !important;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+body.login-background {
+    margin: 0;
+    height: 100vh;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, black 50%, white 50%);
+    position: relative;
+    font-family: Arial, sans-serif;
+  }
+  
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  body.login-background::before {
+    content: "FIVEM";
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    z-index: 0;
+  }
+  
+  body.login-background::after {
+    content: "SHOP";
+    position: absolute;
+    bottom: 10%;
+    right: 15%;
+    color: black;
+    font-size: 48px;
+    font-weight: bold;
+    z-index: 0;
+  }
+  
