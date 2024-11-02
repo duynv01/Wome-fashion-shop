@@ -1,6 +1,8 @@
-﻿namespace server.Models.Entities
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+namespace server.Models.Entities
 {
-    public class User
+    public class User 
     {
         public int UserId { get; set; }
         public string Username { get; set; }
@@ -8,5 +10,6 @@
         public string Email { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Role { get; set; }
+        public ICollection<RefreshToken> RefreshTokens { get; set; }
     }
 }
