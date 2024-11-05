@@ -1,4 +1,6 @@
-﻿namespace server.Models.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace server.Models.Entities
 {
     public class Order
     {
@@ -9,6 +11,8 @@
         public string Status { get; set; } // Trạng thái đơn hàng
 
         public User User { get; set; } // Điều hướng tới User
+
+        //[JsonIgnore]
         public ICollection<OrderItem> OrderItems { get; set; }
     }
 }

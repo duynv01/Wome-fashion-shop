@@ -10,6 +10,6 @@ namespace server.Models.Entities
         public string Email { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Role { get; set; }
-        public ICollection<RefreshToken> RefreshTokens { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

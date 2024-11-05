@@ -1,12 +1,18 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using server.Data;
+using server.Helper;
 using server.Models;
 using server.Service;
 using server.Service.CategoryInterface;
+using server.Service.OrderInterface;
 using server.Service.ProductInterface;
+using server.Service.UserInterface;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace server
 {
@@ -19,9 +25,23 @@ namespace server
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.
+                                                                   ReferenceLoopHandling.Ignore;
+            });
+
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
-            builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+            builder.Services.AddScoped<IOrderRepo, OrderRepo>();
+            builder.Services.AddScoped<IColorRepo, ColorRepo>();
+            builder.Services.AddScoped<ISizeRepo, SizeRepo>();
+            builder.Services.AddScoped<IImageRepo, ImageRepo>();
+
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddTransient<IProductService, ProductService>();
+
+            builder.Services.AddAutoMapper(typeof(Program));
 
             builder.Services.Configure<AppSetting>(builder.Configuration.GetSection("AppSettings"));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -42,7 +62,9 @@ namespace server
                         ClockSkew = TimeSpan.Zero,
                     };
                 });
-
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+            builder.Services.AddTransient<IEmailService, EmailService>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -59,6 +81,8 @@ namespace server
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
