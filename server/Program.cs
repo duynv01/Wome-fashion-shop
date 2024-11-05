@@ -6,6 +6,7 @@ using server.Models;
 using server.Service;
 using server.Service.CategoryInterface;
 using server.Service.ProductInterface;
+using server.Service.UserInterface;
 using System.Text;
 
 namespace server
@@ -42,7 +43,9 @@ namespace server
                         ClockSkew = TimeSpan.Zero,
                     };
                 });
-
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+            builder.Services.AddTransient<IEmailService, EmailService>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
