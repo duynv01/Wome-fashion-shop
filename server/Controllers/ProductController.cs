@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
+using server.Models;
 using server.Models.Entities;
-using server.Service;
 using server.Service.ProductInterface;
+using server.Service;
 using System.Reflection;
 
 namespace server.Controllers
@@ -13,111 +14,53 @@ namespace server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IProductService _productService;
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IProductService productService)
         {
-            _productRepository = productRepository;
+            _productService = productService;
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAllProductsAsync()
         {
-            try
-            {
-                var result = _productRepository.GetAll();
-                return Ok(result);
-            }
-            catch
-            {
-                return NotFound();
-            }
+            return await _productService.GetAllProductsAsync();
         }
 
-        [HttpGet("{search}")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetSearch(string search)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProductAsync(int id)
         {
-            try
-            {
-                var result = await _productRepository.GetSearch(search);
-
-                if (result.Any())
-                {
-                    return Ok(result);
-                }
-
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
-            }
+            return await _productService.GetProductsAsync(id);
         }
 
-        [HttpGet("[action]/{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("find/{sku}")]
+        public async Task<IActionResult> FindProductsAsync(string sku, decimal? from, decimal? to, string sortBy)
         {
-            try
-            {
-                var data = _productRepository.GetById(id);
-                if (data != null)
-                {
-                    return Ok(data);
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpPost]
-        public IActionResult Add(Product product)
-        {
-            try
-            {
-                return Ok(_productRepository.Add(product));
-            }
-            catch
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, Product product)
-        {
-            if(id != product.ProductId)
-            {
-                return BadRequest();
-            }
-            try
-            {
-                _productRepository.Update(product);
-                return NoContent();
-            }
-            catch
-            {
-                return NotFound();
-            }
+            return await _productService.FindProductsAsync(sku, from, to, sortBy);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> DeleteProductAsync(int id)
         {
+            return await _productService.DeleteProductsAsync(id);
+        }
+
+        [HttpPost("add")]
+        public async Task<IActionResult> AddProductAsync([FromBody] ProductViewModel productViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
-                _productRepository.Delete(id);
-                return Ok();
+                var result = await _productService.AddProductAsync(productViewModel);
+                return result;
             }
             catch
             {
-                return NotFound();
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
         }
     }

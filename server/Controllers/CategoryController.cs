@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using server.Models;
 using server.Models.Entities;
 using server.Service.CategoryInterface;
 
@@ -9,90 +11,62 @@ namespace server.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoriesRepository _categoriesRepository;
+        private readonly IMapper _mapper;
 
-        public CategoryController(ICategoriesRepository categoriesRepository)
+        public CategoryController(ICategoriesRepository categoriesRepository, IMapper mapper)
         {
             _categoriesRepository = categoriesRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<ActionResult<IEnumerable<Category>>> GetAllCategoriesAsync()
         {
-            try
-            {
-                var result = _categoriesRepository.GetAll();
-                return Ok(result);
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+            var categories = await _categoriesRepository.GetAllCategoriesAsync();
+            return Ok(categories);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<ActionResult<Category>> GetCategoryAsync(int id)
+        {
+            var category = await _categoriesRepository.GetCategoryAsync(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(category);
+        }
+
+        [HttpPost("add")]
+        public async Task<ActionResult> AddCategoryAsync(CategoryDto categoryDto)
         {
             try
             {
-                var data = _categoriesRepository.GetById(id);
-                if (data != null)
-                {
-                    return Ok(data);
-                }
-                else
-                {
-                    return NotFound();
-                }
+                var newCategoryId = await _categoriesRepository.AddCategoryAsync(categoryDto);
+                var category = await _categoriesRepository.GetCategoryAsync(newCategoryId);
+                return category == null ? NotFound() : Ok(category);
             }
             catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
-
-        [HttpPost]
-        public IActionResult Add(Category category)
-        {
-            try
-            {
-                return Ok(_categoriesRepository.Add(category));
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
-
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, Category category)
-        {
-            if (id != category.CategoryId)
             {
                 return BadRequest();
             }
-            try
-            {
-                _categoriesRepository.Update(category);
-                return NoContent();
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryDto categoryDto)
+        {
+            await _categoriesRepository.UpdateCategory(id, categoryDto);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> DeleteCategoriesAsync(int id)
         {
-            try
-            {
-                _categoriesRepository.Delete(id);
-                return Ok();
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+            await _categoriesRepository.DeleteCategoriesAsync(id);
+            return Ok();
         }
     }
 }

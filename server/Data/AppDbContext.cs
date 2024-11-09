@@ -1,11 +1,8 @@
 ﻿namespace server.Data
 {
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using server.Models.Entities;
-    using System.Drawing;
 
     public class AppDbContext : DbContext
     {
@@ -24,8 +21,7 @@
         public DbSet<Sizes> Sizes { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
-        public DbSet<RefreshToken> RefreshTokens { get; set; }
-
+        public DbSet<Image> Images { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
@@ -72,10 +68,28 @@
                 entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
             });
 
-            modelBuilder.Entity<RefreshToken>()
-                .HasOne(rt => rt.User)
-                .WithMany(u => u.RefreshTokens)
-                .HasForeignKey(rt => rt.UserId);
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.OrderItems)
+                .WithOne(oi => oi.Order)
+                .HasForeignKey(oi => oi.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.OrderItems)
+                .WithOne(oi => oi.Product)
+                .HasForeignKey(oi => oi.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Category) 
+                .WithMany(c => c.Products) 
+                .HasForeignKey(p => p.CategoryId);
+
+            modelBuilder.Entity<User>()
+               .HasMany(u => u.Orders)
+               .WithOne(o => o.User)
+               .HasForeignKey(o => o.UserId)
+               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
