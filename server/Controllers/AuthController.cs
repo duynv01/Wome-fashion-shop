@@ -96,7 +96,7 @@ namespace server.Controllers
             return tokenHandler.WriteToken(token);
         }
 
-        [HttpPost("forgot-password")]
+        [HttpPost("reset-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
         {
             var user = await _userService.GetUserByEmail(request.Email);

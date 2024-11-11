@@ -1,5 +1,6 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
@@ -48,6 +49,17 @@ namespace server
             var secretKey = builder.Configuration["AppSettings:SecretKey"];
             var secretKeyBytes = Encoding.UTF8.GetBytes(secretKey);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost3000And3500", policy =>
+                {
+                    // Cho phép cả 2 cổng
+                    policy.WithOrigins("http://localhost:3000", "http://localhost:3500")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+
             builder.Services.AddAuthentication
                 (JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
                 {
@@ -79,6 +91,8 @@ namespace server
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors("AllowLocalhost3000And3500");
 
             app.UseHttpsRedirection();
 

@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "wHmTdzQjOI+52yc/ssik8jb3aBon0KdSXd8S7aZ3iSw=",
+  "Hash": "q4wXinZnicq9J5QBnVeKsjzfJXn+i8N8GsgLOtNpWZQ=",
   "Source": "server",
   "BasePath": "_content/server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "server\\wwwroot",
+      "Source": "server",
+      "ContentRoot": "D:\\Women-Fashion-Store\\women-store\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Women-Fashion-Store\\women-store\\server\\wwwroot\\images\\55e04171-5f85-4512-973d-4c994ae69bee.jpg",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Women-Fashion-Store\\women-store\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/55e04171-5f85-4512-973d-4c994ae69bee.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\55e04171-5f85-4512-973d-4c994ae69bee.jpg"
+    }
+  ]
 }
