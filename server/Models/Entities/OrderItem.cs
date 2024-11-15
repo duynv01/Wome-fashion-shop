@@ -5,7 +5,7 @@
         public int OrderItemId { get; set; }
         public int OrderId { get; set; } // Khóa ngoại tới Order
         public int ProductId { get; set; } // Khóa ngoại tới Product
-        public int Quantity { get; set; }
+        public int Amount { get; set; }
         public decimal Price { get; set; } // Giá tại thời điểm mua
 
         public Order Order { get; set; } // Điều hướng tới Order

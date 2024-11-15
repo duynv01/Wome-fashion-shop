@@ -1,8 +1,10 @@
-﻿namespace server.Models
+﻿using server.Models.Entities;
+
+namespace server.Models
 {
     public class ProductViewModel
     {
-        public int ProductId { get; set; }
+        public int ProductId { get; set; } 
         public string Sku { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

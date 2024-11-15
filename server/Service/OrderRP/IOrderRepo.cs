@@ -1,4 +1,5 @@
-﻿using server.Models.Entities;
+﻿using server.Models;
+using server.Models.Entities;
 
 namespace server.Service.OrderInterface
 {

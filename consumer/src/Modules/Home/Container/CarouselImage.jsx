@@ -25,7 +25,7 @@ const CarouselImage = () => {
         {/* Ảnh 3 (nếu có) */}
         <div>
           <img
-            src="https://pos.nvncdn.com/b153ea-53436/bn/20241017_MJzNNwVX.gif"  // Thay bằng link ảnh của bạn
+            src="https://localhost:5000/images/7770eb6b-5ac2-4d13-ba09-70b1f6575b00.jpg" // Thay bằng link ảnh của bạn
             alt="Image 3"
             className="carousel-image"
           />

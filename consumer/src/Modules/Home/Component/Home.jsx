@@ -16,10 +16,10 @@ const Home = () => {
 
       {/* Padding to avoid overlap */}
       <div>
-        {/* <CarouselImage /> */}
+        <CarouselImage />
         <Items />
-        {/* <NewProducts /> */}
-        {/* <BestSeller /> */}
+        <NewProducts />
+        <BestSeller />
         <Footer />
       </div>
     </div>

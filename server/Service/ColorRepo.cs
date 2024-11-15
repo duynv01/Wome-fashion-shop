@@ -17,6 +17,25 @@ namespace server.Service
             _mapper = mapper;
         }
 
+        public async Task<int> AddColorAsync(ColorDto colorDto)
+        {
+            var newColor = _mapper.Map<Colors>(colorDto);
+            await _context.Colors.AddAsync(newColor);
+            await _context.SaveChangesAsync();
+
+            return newColor.ColorId;
+        }
+
+        public async Task DeleteColorAsync(int id)
+        {
+            var deleteColor = _context.Colors!.SingleOrDefault(c => c.ColorId == id);
+            if (deleteColor != null)
+            {
+                _context.Colors!.Remove(deleteColor);
+                await _context.SaveChangesAsync();
+            }
+        }
+
         public async Task<List<Colors>> GetAllColor()
         {
             var colors = await _context.Colors
@@ -33,6 +52,16 @@ namespace server.Service
                        .FirstOrDefaultAsync(c => c.ColorId == id);
 
             return _mapper?.Map<Colors?>(color);
+        }
+
+        public async Task UpdateColorAsync(int id, ColorDto colorDto)
+        {
+            if (id == colorDto.ColorId)
+            {
+                var updateColor = _mapper.Map<Colors>(colorDto);
+                _context.Colors!.Update(updateColor);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

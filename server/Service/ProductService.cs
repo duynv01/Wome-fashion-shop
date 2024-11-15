@@ -131,7 +131,7 @@ namespace server.Service
                     {
                         ProductId = product.ProductId,
                         Sku = product.Sku.Trim(),
-                        Name = product.Name.Trim(),
+                        Name = product.Name.Trim(),                 
                     });
                 }
                 else

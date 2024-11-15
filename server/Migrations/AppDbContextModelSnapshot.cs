@@ -56,6 +56,44 @@ namespace server.Migrations
                     b.ToTable("Colors");
                 });
 
+            modelBuilder.Entity("server.Models.Entities.DeliveryInfo", b =>
+                {
+                    b.Property<int>("DeliveryInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DeliveryInfoId"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DeliveryInfoId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("DeliveryInfos");
+                });
+
             modelBuilder.Entity("server.Models.Entities.Image", b =>
                 {
                     b.Property<int>("ImageId")
@@ -85,6 +123,13 @@ namespace server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -113,6 +158,9 @@ namespace server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"), 1L, 1);
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -120,9 +168,6 @@ namespace server.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("OrderItemId");
@@ -217,42 +262,6 @@ namespace server.Migrations
                     b.ToTable("ProductSizes");
                 });
 
-            modelBuilder.Entity("server.Models.Entities.RefreshToken", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ExpiredAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRevoked")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsUsed")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("IssuedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("JwtId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RefreshToken");
-                });
-
             modelBuilder.Entity("server.Models.Entities.Sizes", b =>
                 {
                     b.Property<int>("SizeId")
@@ -278,6 +287,9 @@ namespace server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -287,8 +299,14 @@ namespace server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
@@ -305,6 +323,17 @@ namespace server.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("server.Models.Entities.DeliveryInfo", b =>
+                {
+                    b.HasOne("server.Models.Entities.Order", "Order")
+                        .WithMany("DeliveryInfo")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("server.Models.Entities.Order", b =>
@@ -386,17 +415,6 @@ namespace server.Migrations
                     b.Navigation("Size");
                 });
 
-            modelBuilder.Entity("server.Models.Entities.RefreshToken", b =>
-                {
-                    b.HasOne("server.Models.Entities.User", "User")
-                        .WithMany("RefreshTokens")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("server.Models.Entities.Category", b =>
                 {
                     b.Navigation("Products");
@@ -409,6 +427,8 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Models.Entities.Order", b =>
                 {
+                    b.Navigation("DeliveryInfo");
+
                     b.Navigation("OrderItems");
                 });
 
@@ -428,7 +448,6 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Models.Entities.User", b =>
                 {
-
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
