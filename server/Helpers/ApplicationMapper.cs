@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using server.Models;
 using server.Models.Entities;
-using server.Service;
 
 namespace server.Helper
 {
@@ -14,7 +13,12 @@ namespace server.Helper
             CreateMap<ProductColor, ProductColorDto>().ReverseMap();
             CreateMap<Sizes, SizeDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<DeliveryInfo, DeliveryInfoDto>().ReverseMap();
             CreateMap<Image, ImageDto>().ReverseMap();
+
+            CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<OrderItem, OrderItemDto>().ReverseMap();
+            CreateMap<User, UpdateUserDto>().ReverseMap();
         }
     }
 }

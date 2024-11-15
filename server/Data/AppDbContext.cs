@@ -22,6 +22,7 @@
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<DeliveryInfo> DeliveryInfos { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
@@ -68,11 +69,28 @@
                 entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
             });
 
+            modelBuilder.Entity<User>()
+               .HasMany(u => u.Orders)
+               .WithOne(o => o.User)
+               .HasForeignKey(o => o.UserId)
+               .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<Order>()
                 .HasMany(o => o.OrderItems)
                 .WithOne(oi => oi.Order)
                 .HasForeignKey(oi => oi.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.DeliveryInfo) 
+                .WithOne(d => d.Order)
+                .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.User)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.UserId);
 
             modelBuilder.Entity<Product>()
                 .HasMany(p => p.OrderItems)
@@ -84,12 +102,6 @@
                 .HasOne(p => p.Category) 
                 .WithMany(c => c.Products) 
                 .HasForeignKey(p => p.CategoryId);
-
-            modelBuilder.Entity<User>()
-               .HasMany(u => u.Orders)
-               .WithOne(o => o.User)
-               .HasForeignKey(o => o.UserId)
-               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

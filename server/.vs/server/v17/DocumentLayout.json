@@ -1,0 +1,134 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\helpers\\applicationmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:helpers\\applicationmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\service\\deliveryinforepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:service\\deliveryinforepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\service\\ideliveryinforepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:service\\ideliveryinforepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\controllers\\deliveryinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:controllers\\deliveryinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\models\\deliveryinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:models\\deliveryinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-15T13:16:08.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationMapper.cs",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Helpers\\ApplicationMapper.cs",
+              "RelativeDocumentMoniker": "Helpers\\ApplicationMapper.cs",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Helpers\\ApplicationMapper.cs",
+              "RelativeToolTip": "Helpers\\ApplicationMapper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T13:13:28.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DeliveryInfoController.cs",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\DeliveryInfoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DeliveryInfoController.cs",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\DeliveryInfoController.cs",
+              "RelativeToolTip": "Controllers\\DeliveryInfoController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAADkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T13:12:19.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IDeliveryInfoRepo.cs",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\IDeliveryInfoRepo.cs",
+              "RelativeDocumentMoniker": "Service\\IDeliveryInfoRepo.cs",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\IDeliveryInfoRepo.cs",
+              "RelativeToolTip": "Service\\IDeliveryInfoRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T13:11:58.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DeliveryInfoRepo.cs",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\DeliveryInfoRepo.cs",
+              "RelativeDocumentMoniker": "Service\\DeliveryInfoRepo.cs",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\DeliveryInfoRepo.cs",
+              "RelativeToolTip": "Service\\DeliveryInfoRepo.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAADUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T13:07:26.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DeliveryInfoDto.cs",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Models\\DeliveryInfoDto.cs",
+              "RelativeDocumentMoniker": "Models\\DeliveryInfoDto.cs",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Models\\DeliveryInfoDto.cs",
+              "RelativeToolTip": "Models\\DeliveryInfoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T12:47:19.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

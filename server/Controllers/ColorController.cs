@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using server.Models;
 using server.Service;
 
 namespace server.Controllers
@@ -9,10 +12,12 @@ namespace server.Controllers
     public class ColorController : ControllerBase
     {
         private readonly IColorRepo _colorRepo;
+        private readonly IMapper _mapper;
 
-        public ColorController(IColorRepo colorRepo)
+        public ColorController(IColorRepo colorRepo, IMapper mapper)
         {
             _colorRepo = colorRepo;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -21,7 +26,10 @@ namespace server.Controllers
             try
             {
                 var colors = await _colorRepo.GetAllColor();
-                return Ok(colors);
+
+                var colorDtos = _mapper.Map<List<ColorDto>>(colors);
+
+                return Ok(colorDtos);
             }
             catch
             {
@@ -46,6 +54,36 @@ namespace server.Controllers
                 return BadRequest();
             }
 
+        }
+
+        [HttpPost("add")]
+        public async Task<ActionResult> AddColorAsync(ColorDto colorDto)
+        {
+            try
+            {
+                var newColorId = await _colorRepo.AddColorAsync(colorDto);
+                var color = await _colorRepo.GetColorById(newColorId);
+                return color == null ? NotFound() : Ok(color);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateColorAsync(int id, [FromBody] ColorDto colorDto)
+        {
+            await _colorRepo.UpdateColorAsync(id, colorDto);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteColorAsync(int id)
+        {
+            await _colorRepo.DeleteColorAsync(id);
+            return Ok();
         }
     }
 }

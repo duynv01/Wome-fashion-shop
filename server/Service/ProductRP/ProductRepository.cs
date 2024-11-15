@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
 using server.Models.Entities;
+using System;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace server.Service.ProductInterface
@@ -93,7 +94,10 @@ namespace server.Service.ProductInterface
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products
+                        .Include(p => p.ProductColors)
+                        .ThenInclude(pc => pc.Color)
+                        .ToListAsync();
         }
 
         public async Task<Product> GetProductAsync(int id)

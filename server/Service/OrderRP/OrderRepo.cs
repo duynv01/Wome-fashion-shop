@@ -1,6 +1,8 @@
 ﻿
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
+using server.Models;
 using server.Models.Entities;
 
 namespace server.Service.OrderInterface
@@ -8,17 +10,30 @@ namespace server.Service.OrderInterface
     public class OrderRepo : IOrderRepo
     {
         private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
 
-        public OrderRepo(AppDbContext context)
+        public OrderRepo(AppDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
+        }
+
+        public async Task<Order> AddOrderAsync(OrderDto orderDto)
+        {
+            var newOrder = _mapper.Map<Order>(orderDto);
+            await _context.Orders.AddAsync(newOrder);
+            await _context.SaveChangesAsync();
+
+            return newOrder;
         }
 
         public async Task<IEnumerable<Order>>GetAllOrder()
         {
             return await _context.Orders
+                    //.Include(o => o.User)
                     .Include(o => o.OrderItems)
-                    .ThenInclude(oi => oi.Product).ToListAsync();
+                    .ThenInclude(oi => oi.Product)
+                    .ToListAsync();
         }
 
         public async Task<Order?> GetOrderById(int id)

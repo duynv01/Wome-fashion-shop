@@ -10,6 +10,7 @@ using server.Models;
 using server.Service;
 using server.Service.CategoryInterface;
 using server.Service.OrderInterface;
+using server.Service.OrderItemRP;
 using server.Service.ProductInterface;
 using server.Service.UserInterface;
 using System.Text;
@@ -35,11 +36,14 @@ namespace server
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             builder.Services.AddScoped<IOrderRepo, OrderRepo>();
+            builder.Services.AddScoped<IOrderItemRepo, OrderItemRepo>();
             builder.Services.AddScoped<IColorRepo, ColorRepo>();
             builder.Services.AddScoped<ISizeRepo, SizeRepo>();
+            builder.Services.AddScoped<IDeliveryInfoRepo, DeliveryInfoRepo>();
             builder.Services.AddScoped<IImageRepo, ImageRepo>();
 
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IOrderSevice, OrderService>();
             builder.Services.AddTransient<IProductService, ProductService>();
 
             builder.Services.AddAutoMapper(typeof(Program));
