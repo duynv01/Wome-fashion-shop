@@ -1,0 +1,4 @@
+:where(.css-dev-only-do-not-override-1gwfwyx).ant-card .ant-card-body {
+    display: flex !important;
+    flex-direction: column !important;
+  }

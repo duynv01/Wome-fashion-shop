@@ -1,0 +1,28 @@
+.products-wrapper {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.5s ease-in-out;  /* Tạo hiệu ứng chuyển động mượt mà */
+  }
+  
+  .products-wrapper .ant-col {
+    transition: transform 0.5s ease-in-out;  /* Thêm hiệu ứng cho các cột */
+  }
+  
+  /* Đảm bảo các sản phẩm luôn nằm ngang */
+  .ant-row {
+    display: flex;
+    width: 100%;
+  }
+  
+  .ant-col {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ant-card-meta-title, .ant-card-meta-description {
+    text-align: center;
+    font-size: 18px;
+  }

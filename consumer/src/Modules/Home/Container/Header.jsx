@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Menu, Space, Drawer, Input, Button } from 'antd';
-import { UserOutlined, ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons';
+import { UserOutlined, SearchOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import CartDrawer from '../../CartDrawer/CartDrawer';
 
 const Header = () => {
     const [visibleSearch, setVisibleSearch] = useState(false);
-    const [visibleCart, setVisibleCart] = useState(false);
-    const [cartItems, setCartItems] = useState([]); // Trạng thái cho giỏ hàng
 
     const showSearchDrawer = () => {
         setVisibleSearch(true);
@@ -14,14 +13,6 @@ const Header = () => {
 
     const onCloseSearch = () => {
         setVisibleSearch(false);
-    };
-
-    const showCartDrawer = () => {
-        setVisibleCart(true);
-    };
-
-    const onCloseCart = () => {
-        setVisibleCart(false);
     };
 
     return (
@@ -41,8 +32,6 @@ const Header = () => {
                     <Menu.Item key="quan"><Link to="/quan">Quần</Link></Menu.Item>
                     <Menu.Item key="dam"><Link to="/dam">Đầm</Link></Menu.Item>
                     <Menu.Item key="chan-vay"><Link to="/chan-vay">Chân váy</Link></Menu.Item>
-                    <Menu.Item key="phu-kien"><Link to="/phu-kien">Phụ kiện</Link></Menu.Item>
-                    <Menu.Item key="khuyen-mai"><Link to="/khuyen-mai">Khuyến mãi</Link></Menu.Item>
                 </Menu>
 
                 {/* Icons */}
@@ -52,7 +41,7 @@ const Header = () => {
                         <Link to="/login">
                             <UserOutlined style={iconStyles} />
                         </Link>
-                        <ShoppingCartOutlined style={iconStyles} onClick={showCartDrawer} />
+                        <CartDrawer /> {/* Thêm CartDrawer vào đây */}
                     </Space>
                 </div>
             </div>
@@ -70,26 +59,6 @@ const Header = () => {
                     <Input placeholder="Search" />
                     <Button type="primary">Search</Button>
                 </Space>
-            </Drawer>
-
-            {/* Drawer cho giỏ hàng */}
-            <Drawer
-                title="Giỏ hàng"
-                placement="right"
-                closable={true}
-                onClose={onCloseCart}
-                visible={visibleCart}
-                key="right"
-            >
-                {cartItems.length === 0 ? (
-                    <p>Chưa có sản phẩm nào trong giỏ hàng.</p>
-                ) : (
-                    <ul>
-                        {cartItems.map((item, index) => (
-                            <li key={index}>{item.name}</li>
-                        ))}
-                    </ul>
-                )}
             </Drawer>
         </header>
     );

@@ -1,0 +1,97 @@
+/* Footer.css */
+.footer {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    border-top: 1px solid #ddd;
+    color: #555;
+  }
+  
+  .footer-top {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .footer-title {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .footer-text {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+  }
+  
+  .footer-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .footer-link {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: #1890ff;
+  }
+  
+  .social-icons {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+  }
+  
+  .social-icon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  .facebook:hover {
+    color: #4267B2;
+  }
+  
+  .instagram:hover {
+    color: #E1306C;
+  }
+  
+  .shopping:hover {
+    color: #000;
+  }
+  
+  .phone:hover {
+    color: #34B7F1;
+  }
+  
+  .email-input {
+    width: 70%;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  
+  .submit-btn {
+    background-color: #1890ff;
+    border-color: #1890ff;
+    color: white;
+    border-radius: 4px;
+  }
+  
+  .submit-btn:hover {
+    background-color: #40a9ff;
+    border-color: #40a9ff;
+  }
+  

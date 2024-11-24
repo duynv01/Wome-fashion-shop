@@ -1,0 +1,26 @@
+/* BestSeller.css */
+.products-wrapper {
+    display: flex;
+    justify-content: space-between;
+    transition: transform 1s ease-in-out; /* Thêm hiệu ứng trượt cho toàn bộ Row */
+  }
+  
+  .ant-row {
+    display: flex;
+    width: 100%;
+  }
+  
+  .ant-col {
+    transition: transform 1s ease-in-out;  /* Hiệu ứng trượt cho các cột */
+  }
+  
+  /* Đảm bảo rằng hình ảnh có thể được cắt và hiển thị vừa vặn */
+  img {
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .ant-card-meta-title, .ant-card-meta-description {
+    text-align: center;
+    font-size: 18px;
+  }

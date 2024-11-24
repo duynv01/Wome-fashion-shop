@@ -1,5 +1,6 @@
-import React from 'react';
-import { Row, Col, Card, Carousel } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Card } from 'antd';
+import './BestSeller.css'; // Tạo một file CSS cho các hiệu ứng
 
 const { Meta } = Card;
 
@@ -43,7 +44,7 @@ const products = [
   },
 ];
 
-// Helper function to group products into arrays of 4 items
+// Hàm để lấy nhóm sản phẩm 4 cái
 const groupProducts = (products, itemsPerSlide) => {
   const grouped = [];
   for (let i = 0; i < products.length; i += 1) {
@@ -53,37 +54,38 @@ const groupProducts = (products, itemsPerSlide) => {
 };
 
 const BestSeller = () => {
-  // Group products into chunks of 4
-  const groupedProducts = groupProducts(products, 4);
+  const [currentProducts, setCurrentProducts] = useState(products.slice(0, 4)); // Ban đầu hiển thị 4 sản phẩm đầu tiên
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentProducts((prevProducts) => {
+        const nextProducts = [
+          ...prevProducts.slice(1), // Loại bỏ sản phẩm đầu tiên
+          products[(products.indexOf(prevProducts[prevProducts.length - 1]) + 1) % products.length], // Thêm sản phẩm tiếp theo
+        ];
+        return nextProducts;
+      });
+    }, 3000); // Cập nhật mỗi 3 giây
+
+    return () => clearInterval(interval); // Dọn dẹp khi component bị unmount
+  }, []);
 
   return (
-    <div style={{ padding: '30px' }}>
+    <div style={{ padding: '10px' }}>
       <h1 style={{ textAlign: 'center' }}>SẢN PHẨM BÁN CHẠY</h1>
-      <Carousel arrows={true} autoplay dots={true}>
-        {groupedProducts.map((group, index) => (
-          <div key={index}>
-            <Row gutter={[16, 16]}>
-              {group.map((product) => (
-                <Col xs={24} sm={12} md={12} lg={6} key={product.id}>
-                  <Card
-                    hoverable
-                    style={{ width: '100%' }}
-                    cover={
-                      <img
-                        alt={product.title}
-                        src={product.image}
-                        style={{ height: '400px', objectFit: 'cover' }}
-                      />
-                    }
-                  >
-                    <Meta title={product.title} description={product.price} />
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </div>
+      <Row gutter={[16, 16]} className="products-wrapper">
+        {currentProducts.map((product) => (
+          <Col xs={24} sm={12} md={8} lg={6} key={product.id}>
+            <Card
+              hoverable
+              style={{ width: '100%' }}
+              cover={<img alt={product.title} src={product.image} style={{ height: '400px', objectFit: 'cover' }} />}
+            >
+              <Meta title={product.title} description={product.price} />
+            </Card>
+          </Col>
         ))}
-      </Carousel>
+      </Row>
     </div>
   );
 };

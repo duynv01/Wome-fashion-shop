@@ -11,10 +11,7 @@ const Home = () => {
 
   return (
     <div>
-      {/* Fixed Header */}
       <Header className="fixed-header" />
-
-      {/* Padding to avoid overlap */}
       <div>
         <CarouselImage />
         <Items />
