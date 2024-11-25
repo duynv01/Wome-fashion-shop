@@ -32,7 +32,6 @@ namespace server.Service
                 {
                     return new OkObjectResult(new ProductViewModel
                     {
-                        ProductId = product.ProductId,
                         Sku = product.Sku.Trim(),
                         Name = product.Name.Trim(),
                     });
@@ -57,7 +56,6 @@ namespace server.Service
                 {
                     return new OkObjectResult(products.Select(p => new ProductViewModel()
                     {
-                        ProductId = p.ProductId,
                         Sku = p.Sku.Trim(),
                         Name = p.Name.Trim(),
                         Price = p.Price
@@ -104,7 +102,6 @@ namespace server.Service
                 {
                     return new OkObjectResult(new ProductViewModel()
                     {
-                        ProductId = product.ProductId,
                         Sku = product.Sku.Trim(),
                         Name = product.Name.Trim(),
                     });
@@ -129,7 +126,6 @@ namespace server.Service
                 {
                     return new OkObjectResult(new ProductViewModel()
                     {
-                        ProductId = product.ProductId,
                         Sku = product.Sku.Trim(),
                         Name = product.Name.Trim(),                 
                     });

@@ -11,5 +11,10 @@ namespace server.Models
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
         public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public int? ColorId { get; set; }
+        public string ColorName { get; set; } 
+        public int? SizeId { get; set; }
+        public string SizeName { get; set; }
     }
 }
