@@ -15,10 +15,12 @@ namespace server.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
+        private readonly IProductRepository _productRepository;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IProductRepository productRepository)
         {
             _productService = productService;
+            _productRepository = productRepository;
         }
 
         [HttpGet]
@@ -62,6 +64,13 @@ namespace server.Controllers
             {
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProductsAsync(int id, [FromBody] ProductViewModel productViewModel)
+        {
+            await _productRepository.UpdateProductsAsync(id, productViewModel);
+            return Ok(productViewModel);
         }
     }
 }

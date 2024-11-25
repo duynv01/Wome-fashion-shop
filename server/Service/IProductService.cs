@@ -12,5 +12,6 @@ namespace server.Service
         Task<IActionResult> FindProductsAsync(string sku, decimal? from, decimal? to, string sortBy);
         Task<IActionResult> DeleteProductsAsync(int id);
         Task<IActionResult> AddProductAsync(ProductViewModel productViewModel);
+
     }
 }

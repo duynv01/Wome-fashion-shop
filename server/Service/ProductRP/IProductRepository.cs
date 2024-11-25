@@ -6,7 +6,7 @@ namespace server.Service
     public interface IProductRepository
     {
         Task<Product> AddProductAsync(ProductViewModel productViewModel);
-        Task<IEnumerable<Product>> GetAllProductsAsync();
+        Task<List<ProductViewModel>> GetAllProductsAsync();
         Task<Product> GetProductAsync(int id);
         Task<IEnumerable<Product>> FindProductsAsync(string sku, decimal? from, decimal? to, string sortBy);
         Task<Product> DeleteProductsAsync(int id);
