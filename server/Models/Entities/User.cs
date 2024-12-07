@@ -14,5 +14,6 @@ namespace server.Models.Entities
         public DateTime CreatedAt { get; set; }
         public string Role { get; set; }
         public ICollection<Order> Orders { get; set; }
+        public ICollection<DeliveryHistory> DeliveryHistories { get; set; }
     }
 }

@@ -5,22 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\service\\productrp\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:service\\productrp\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\models\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:models\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\service\\productrp\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:service\\productrp\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,73 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-25T13:19:58.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductViewModel.cs",
-              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Models\\ProductViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\ProductViewModel.cs",
-              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Models\\ProductViewModel.cs",
-              "RelativeToolTip": "Models\\ProductViewModel.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAQwA0AAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T12:34:01.32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\ProductRP\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "Service\\ProductRP\\ProductRepository.cs",
-              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\ProductRP\\ProductRepository.cs",
-              "RelativeToolTip": "Service\\ProductRP\\ProductRepository.cs",
-              "ViewState": "AgIAAL0AAAAAAAAAAAAAAIkAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T11:57:56.829Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IProductRepository.cs",
-              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\ProductRP\\IProductRepository.cs",
-              "RelativeDocumentMoniker": "Service\\ProductRP\\IProductRepository.cs",
-              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\ProductRP\\IProductRepository.cs",
-              "RelativeToolTip": "Service\\ProductRP\\IProductRepository.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAuwAsAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T11:57:40.231Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
-              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAuwEIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T11:27:31.705Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -108,6 +27,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-07T12:04:47.934Z",
+              "EditorCaption": ""
             }
           ]
         }

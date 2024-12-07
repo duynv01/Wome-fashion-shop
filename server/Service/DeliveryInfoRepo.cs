@@ -17,47 +17,15 @@ namespace server.Service
             _context = context;
             _mapper = mapper;
         }
-        public async Task<List<DeliveryInfo>> GetAllDeliveryInfos()
-        {
-            var deliveryInfos = await _context.DeliveryInfos
-                       .Include(di => di.Order)
-                       .ToListAsync();
 
-            return _mapper.Map<List<DeliveryInfo>>(deliveryInfos);
+        public async Task<IEnumerable<DeliveryInfo>> GetAllDeliveryInfosAsync()
+        {
+            return await _context.DeliveryInfos!.ToListAsync();
         }
 
-        public async Task<DeliveryInfo?> GetDeliveryInfoById(int id)
+        public async Task<DeliveryInfo?> GetDeliveryInfoAsync(int id)
         {
-            var deliveryInfos = await _context.DeliveryInfos
-                       .Include(di => di.Order)
-                       .FirstOrDefaultAsync(di => di.DeliveryInfoId == id);
-
-            return _mapper?.Map<DeliveryInfo?>(deliveryInfos);
-        }
-
-        public async Task UpdateDeliveryInfo(int id, string newStatus)
-        {
-            var deliveryInfo = await _context.DeliveryInfos
-                                     .FirstOrDefaultAsync(d => d.DeliveryInfoId == id);
-
-            if (deliveryInfo != null)
-            {
-                // Cập nhật status của DeliveryInfo
-                deliveryInfo.Status = newStatus;
-
-                // Cập nhật status của Order tương ứng
-                var order = await _context.Orders
-                    .FirstOrDefaultAsync(o => o.OrderId == deliveryInfo.OrderId);
-
-                if (order != null)
-                {
-                    // Cập nhật status của Order
-                    order.Status = newStatus;
-                }
-
-                // Lưu thay đổi vào cơ sở dữ liệu
-                await _context.SaveChangesAsync();
-            }
+            return await _context.DeliveryInfos!.SingleOrDefaultAsync(di => di.DeliveryInfoId == id);
         }
     }
 }

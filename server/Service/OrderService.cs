@@ -1,11 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using server.Models;
+﻿using server.Models;
 using server.Models.Entities;
-using server.Service.OrderInterface;
-using server.Service.UserInterface;
 using AutoMapper;
 using server.Data;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace server.Service
 {
@@ -29,7 +26,7 @@ namespace server.Service
             {
                 throw new Exception("User not found.");
             }
-            if(user.Address == null || user.Phone == null)
+            if (user.Address == null || user.Phone == null)
             {
                 throw new Exception("Please update the Infomation!");
             }
@@ -38,19 +35,16 @@ namespace server.Service
             var order = new Order
             {
                 UserId = orderDto.UserId,
-                OrderCode = Guid.NewGuid().ToString().Substring(0, 8),
                 OrderDate = DateTime.Now,
                 CreatedAt = DateTime.UtcNow,
-                TotalAmount = orderDto.Amount,
-                Status = orderDto.Status,
+                TotalAmount = 0,
+                Status = DeliveryStatus.DangXacNhan
             };
-
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
 
             var deliveryInfo = new DeliveryInfo
             {
-                OrderId = order.OrderId,
                 Email = user.Email, 
                 Address = updateUserDto.Address,
                 Phone = updateUserDto.Phone,       
@@ -58,6 +52,17 @@ namespace server.Service
             };
 
             await _context.DeliveryInfos.AddAsync(deliveryInfo);
+            await _context.SaveChangesAsync();
+
+            var deliveryHistory = new DeliveryHistory
+            {
+                OrderId = order.OrderId,
+                UserId = user.UserId,
+                DeliveryInfoId = deliveryInfo.DeliveryInfoId,
+                Status = DeliveryStatus.DangXacNhan,
+            };
+
+            await _context.DeliveryHistories.AddAsync(deliveryHistory);
             await _context.SaveChangesAsync();
             return order;
         }

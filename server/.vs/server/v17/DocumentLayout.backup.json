@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\service\\productrp\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:service\\productrp\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\models\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:models\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\service\\productrp\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:service\\productrp\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|d:\\fivem api\\wome-fashion-shop-main\\server\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5C6BD17-2ECA-41E3-B895-CDA844713B50}|server.csproj|solutionrelative:controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductViewModel.cs",
-              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Models\\ProductViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\ProductViewModel.cs",
-              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Models\\ProductViewModel.cs",
-              "RelativeToolTip": "Models\\ProductViewModel.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAQwA0AAAAwAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "Controllers\\OrderController.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAwEwAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T12:34:01.32Z",
+              "WhenOpened": "2024-12-06T13:18:38.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAuwFwAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T13:15:28.219Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\ProductRP\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "Service\\ProductRP\\ProductRepository.cs",
-              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\ProductRP\\ProductRepository.cs*",
-              "RelativeToolTip": "Service\\ProductRP\\ProductRepository.cs*",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAAIkAAAAvAAAAAAAAAA==",
+              "Title": "DashBoardController.cs",
+              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\DashBoardController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DashBoardController.cs",
+              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\DashBoardController.cs",
+              "RelativeToolTip": "Controllers\\DashBoardController.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAuwBwAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T11:57:56.829Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IProductRepository.cs",
-              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\ProductRP\\IProductRepository.cs",
-              "RelativeDocumentMoniker": "Service\\ProductRP\\IProductRepository.cs",
-              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Service\\ProductRP\\IProductRepository.cs",
-              "RelativeToolTip": "Service\\ProductRP\\IProductRepository.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAuwAsAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T11:57:40.231Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
-              "ToolTip": "D:\\FiveM API\\Wome-fashion-shop-main\\server\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAuwEIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T11:27:31.705Z",
+              "WhenOpened": "2024-12-06T13:15:18.938Z",
               "EditorCaption": ""
             },
             {

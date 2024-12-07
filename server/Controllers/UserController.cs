@@ -61,6 +61,37 @@ namespace server.Controllers
             }
         }
 
+        //[HttpGet("customers/count")]
+        //public async Task<IActionResult> GetUserCountByRoleAsync([FromQuery] string fromDate,
+        //                                                         [FromQuery] string toDate)
+        //{
+        //    try
+        //    {
+        //        DateTime startDate = DateTime.Parse(fromDate);
+        //        DateTime endDate = DateTime.Parse(toDate);
+        //        endDate = endDate.Date.AddDays(1).AddMilliseconds(-1);
+
+        //        Console.WriteLine($"FromDate: {startDate}, ToDate: {endDate}");
+
+        //        int count = await _userService.GetUserCountByRoleAsync(startDate, endDate);
+        //        return Ok(new 
+        //        { 
+        //            Role = "User", 
+        //            Count = count, 
+        //            FromDate = startDate, 
+        //            ToDate = endDate 
+        //        });
+        //    }
+        //    catch (FormatException)
+        //    {
+        //        return BadRequest(new { message = "Invalid date format. Use yyyy-MM-dd." });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, new { message = "An error occurred.", error = ex.Message });
+        //    }
+        //}
+
         [HttpPut("id")]
         public async Task<IActionResult> UpdateUserDto(int id, [FromBody] UpdateUserDto updateUserDto)
         {

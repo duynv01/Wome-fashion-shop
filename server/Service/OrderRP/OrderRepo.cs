@@ -1,5 +1,6 @@
 ﻿
 using AutoMapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
@@ -30,7 +31,7 @@ namespace server.Service.OrderInterface
         public async Task<IEnumerable<Order>>GetAllOrder()
         {
             return await _context.Orders
-                    //.Include(o => o.User)
+                    .Include(o => o.User)
                     .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
                     .ToListAsync();
@@ -42,6 +43,20 @@ namespace server.Service.OrderInterface
                    .Include(o => o.OrderItems) 
                    .ThenInclude(oi => oi.Product) 
                    .FirstOrDefaultAsync(o => o.OrderId == id);
+        }
+
+        public async Task<IEnumerable<RevenuaStaticViewModel>> GetRevenuaStatics(DateTime fromDate, DateTime toDate)
+        {
+            return await _context.Orders
+                    .Where(o => o.Status == DeliveryStatus.DaGui 
+                           && o.CreatedAt >= fromDate && o.CreatedAt <= toDate)
+                    .GroupBy(o => o.CreatedAt.Date)
+                    .Select(g => new RevenuaStaticViewModel
+                    {
+                        Date = g.Key,
+                        Revenue = g.Sum(o => o.TotalPrice)
+                    })
+                    .ToListAsync();
         }
     }
 }

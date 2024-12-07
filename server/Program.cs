@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using server.Data;
 using server.Helper;
 using server.Models;
+using server.Models.Entities;
 using server.Service;
 using server.Service.CategoryInterface;
 using server.Service.OrderInterface;
@@ -40,11 +41,12 @@ namespace server
             builder.Services.AddScoped<IColorRepo, ColorRepo>();
             builder.Services.AddScoped<ISizeRepo, SizeRepo>();
             builder.Services.AddScoped<IDeliveryInfoRepo, DeliveryInfoRepo>();
+            builder.Services.AddScoped<IDeliveryHistoryRepo, DeliveryHistoryRepo>();
             builder.Services.AddScoped<IImageRepo, ImageRepo>();
 
-            builder.Services.AddScoped<IProductService, ProductService>();
+            //builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IOrderSevice, OrderService>();
-            builder.Services.AddTransient<IProductService, ProductService>();
+            //builder.Services.AddTransient<IProductService, ProductService>();
 
             builder.Services.AddAutoMapper(typeof(Program));
 

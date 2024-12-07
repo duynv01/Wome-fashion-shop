@@ -37,6 +37,21 @@ namespace server.Controllers
             return Ok(orderItem);
         }
 
+        [HttpPost("add-orderItem")]
+        public async Task<ActionResult<Order>> AddOrderItemAsync([FromBody] OrderItemDto orderItemDto)
+        {
+            try
+            {
+                var newOrderItemId = await _orderItemRepo.AddOrderItemAsync(orderItemDto);
+                var orderItem = await _orderItemRepo.GetOrderItemById(newOrderItemId);
+                return orderItem == null ? NotFound() : Ok(orderItem);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateOrderItem(int id, [FromBody] OrderItemDto orderItemDto)
         {

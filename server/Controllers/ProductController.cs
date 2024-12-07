@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using server.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Asn1.Ocsp;
 using server.Models;
-using server.Models.Entities;
-using server.Service.ProductInterface;
 using server.Service;
-using System.Reflection;
 
 namespace server.Controllers
 {
@@ -14,56 +9,105 @@ namespace server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductService _productService;
         private readonly IProductRepository _productRepository;
+        private readonly IWebHostEnvironment _env;
 
-        public ProductController(IProductService productService, IProductRepository productRepository)
+        public ProductController(IProductRepository productRepository, IWebHostEnvironment env)
         {
-            _productService = productService;
             _productRepository = productRepository;
+            _env = env;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllProductsAsync()
         {
-            return await _productService.GetAllProductsAsync();
+            var products = await _productRepository.GetAllProductsAsync();
+            return Ok(products);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductAsync(int id)
         {
-            return await _productService.GetProductsAsync(id);
+            var product = await _productRepository.GetProductAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
         }
 
         [HttpGet("find/{sku}")]
         public async Task<IActionResult> FindProductsAsync(string sku, decimal? from, decimal? to, string sortBy)
         {
-            return await _productService.FindProductsAsync(sku, from, to, sortBy);
+            var findProduct = await _productRepository.FindProductsAsync(sku, from, to, sortBy);
+            return Ok(findProduct); 
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProductAsync(int id)
         {
-            return await _productService.DeleteProductsAsync(id);
+            await _productRepository.DeleteProductsAsync(id);
+            return Ok();
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddProductAsync([FromBody] ProductViewModel productViewModel)
+        public async Task<ActionResult> AddProductAsync(ProductViewModel productViewModel)
         {
-            if (!ModelState.IsValid)
+            if (productViewModel == null || string.IsNullOrEmpty(productViewModel.Name) || productViewModel.Price <= 0)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Invalid product data. Name and price are required.");
             }
 
             try
             {
-                var result = await _productService.AddProductAsync(productViewModel);
-                return result;
+                var newProductId = await _productRepository.AddProductAsync(productViewModel);
+                var product = await _productRepository.GetProductAsync(newProductId);
+
+                if (product == null)
+                {
+                    return NotFound("Product not found after creation.");
+                }
+                return Ok(product);
             }
-            catch
+            catch (Exception ex)
             {
-                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+                return StatusCode(500, "Internal server error: " + ex.Message);
             }
+        }
+
+        [HttpPost("upload-image")]
+        public async Task<IActionResult> UploadImage([FromBody] ImageUploadRequest request)
+        {
+            if (string.IsNullOrEmpty(request.ImageBase64))
+            {
+                return BadRequest("No image data provided.");
+            }
+
+            try
+            {
+                // Chuyển đổi base64 thành byte[]
+                var imageBytes = Convert.FromBase64String(request.ImageBase64);
+
+                var fileName = Guid.NewGuid().ToString() + ".jpg";
+
+                // Lưu ảnh vào thư mục uploads
+                var filePath = Path.Combine(_env.WebRootPath, "uploads", fileName);
+                await System.IO.File.WriteAllBytesAsync(filePath, imageBytes);
+
+                // Trả về đường dẫn ảnh
+                var imageUrl = "/uploads/" + fileName;
+                return Ok(new { imageUrl });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+        public class ImageUploadRequest
+        {
+            public string ImageBase64 { get; set; }
         }
 
         [HttpPut("{id}")]

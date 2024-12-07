@@ -12,8 +12,8 @@ using server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241113134156_update_v2")]
-    partial class update_v2
+    [Migration("20241206124134_updateDelivey")]
+    partial class updateDelivey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,6 +56,55 @@ namespace server.Migrations
                     b.HasKey("ColorId");
 
                     b.ToTable("Colors");
+
+                    b.HasData(
+                        new
+                        {
+                            ColorId = 1,
+                            Name = "Black"
+                        },
+                        new
+                        {
+                            ColorId = 2,
+                            Name = "White"
+                        },
+                        new
+                        {
+                            ColorId = 3,
+                            Name = "Brown"
+                        });
+                });
+
+            modelBuilder.Entity("server.Models.Entities.DeliveryHistory", b =>
+                {
+                    b.Property<int>("DeliveryHistoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DeliveryHistoryId"), 1L, 1);
+
+                    b.Property<int>("DeliveryInfoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DeliveryHistoryId");
+
+                    b.HasIndex("DeliveryInfoId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DeliveryHistories");
                 });
 
             modelBuilder.Entity("server.Models.Entities.DeliveryInfo", b =>
@@ -68,26 +117,25 @@ namespace server.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("ReceiverName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("DeliveryInfoId");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("DeliveryInfos");
                 });
@@ -124,10 +172,6 @@ namespace server.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("OrderCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -136,6 +180,9 @@ namespace server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UserId")
@@ -190,6 +237,9 @@ namespace server.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -275,6 +325,23 @@ namespace server.Migrations
                     b.HasKey("SizeId");
 
                     b.ToTable("Sizes");
+
+                    b.HasData(
+                        new
+                        {
+                            SizeId = 1,
+                            Name = "Small"
+                        },
+                        new
+                        {
+                            SizeId = 2,
+                            Name = "Medium"
+                        },
+                        new
+                        {
+                            SizeId = 3,
+                            Name = "Large"
+                        });
                 });
 
             modelBuilder.Entity("server.Models.Entities.User", b =>
@@ -297,7 +364,7 @@ namespace server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Fullname")
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -323,15 +390,31 @@ namespace server.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("server.Models.Entities.DeliveryInfo", b =>
+            modelBuilder.Entity("server.Models.Entities.DeliveryHistory", b =>
                 {
-                    b.HasOne("server.Models.Entities.Order", "Order")
-                        .WithMany("DeliveryInfo")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("server.Models.Entities.DeliveryInfo", "DeliveryInfo")
+                        .WithMany("DeliveryHistories")
+                        .HasForeignKey("DeliveryInfoId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("server.Models.Entities.Order", "Order")
+                        .WithMany("DeliveryHistories")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("server.Models.Entities.User", "User")
+                        .WithMany("DeliveryHistories")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("DeliveryInfo");
+
                     b.Navigation("Order");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("server.Models.Entities.Order", b =>
@@ -423,9 +506,14 @@ namespace server.Migrations
                     b.Navigation("ProductColors");
                 });
 
+            modelBuilder.Entity("server.Models.Entities.DeliveryInfo", b =>
+                {
+                    b.Navigation("DeliveryHistories");
+                });
+
             modelBuilder.Entity("server.Models.Entities.Order", b =>
                 {
-                    b.Navigation("DeliveryInfo");
+                    b.Navigation("DeliveryHistories");
 
                     b.Navigation("OrderItems");
                 });
@@ -446,6 +534,8 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Models.Entities.User", b =>
                 {
+                    b.Navigation("DeliveryHistories");
+
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

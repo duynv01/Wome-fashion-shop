@@ -13,10 +13,11 @@ namespace server.Helper
             CreateMap<ProductColor, ProductColorDto>().ReverseMap();
             CreateMap<Sizes, SizeDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
-            CreateMap<DeliveryInfo, DeliveryInfoDto>().ReverseMap();
+            CreateMap<DeliveryInfo, RevenuaStaticViewModel>().ReverseMap();
             CreateMap<Image, ImageDto>().ReverseMap();
 
             CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<DeliveryHistory, DeliveryHistoryDto>().ReverseMap();
             CreateMap<OrderItem, OrderItemDto>().ReverseMap();
             CreateMap<User, UpdateUserDto>().ReverseMap();
         }

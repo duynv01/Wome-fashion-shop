@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using server.Models;
+using server.Models.Entities;
 using server.Service;
 
 namespace server.Controllers
@@ -17,43 +18,25 @@ namespace server.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllDeliveryInfos()
+        public async Task<ActionResult<IEnumerable<DeliveryInfo>>> GetAllDeliveryInfosAsync()
         {
-            try
-            {
-                var colors = await _deliveryInfoRepo.GetAllDeliveryInfos();
-                return Ok(colors);
-            }
-            catch
-            {
-                return BadRequest();
-            }
+            var deliveryInfos = await _deliveryInfoRepo.GetAllDeliveryInfosAsync();
+            return Ok(deliveryInfos);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetDeliveryInfoById(int id)
+        public async Task<ActionResult<DeliveryInfo>> GetDeliveryHistoryAsync(int id)
         {
-            try
+            var deliveryInfo = await _deliveryInfoRepo.GetDeliveryInfoAsync(id);
+
+            if (deliveryInfo == null)
             {
-                var color = await _deliveryInfoRepo.GetDeliveryInfoById(id);
-                if (color == null)
-                {
-                    return NotFound();
-                }
-                return Ok(color);
-            }
-            catch
-            {
-                return BadRequest();
+                return NotFound();
             }
 
+            return Ok(deliveryInfo);
         }
 
-        [HttpPut("updateStatus")]
-        public async Task<IActionResult> UpdateDeliveryInfo(int id, string newStatus)
-        {
-            await _deliveryInfoRepo.UpdateDeliveryInfo(id, newStatus);
-            return Ok();
-        }
+
     }
 }
