@@ -18,6 +18,41 @@ namespace server.Service.OrderItemRP
             _mapper = mapper;
         }
 
+        public async Task<int> AddOrderItemAsync(OrderItemDto orderItemDto)
+        {
+            var order = await _context.Orders.FindAsync(orderItemDto.OrderId);
+            if (order == null)
+            {
+                throw new Exception("Order not found.");
+            }
+
+            var product = await _context.Products.FindAsync(orderItemDto.ProductId);
+            if (product == null)
+            {
+                throw new Exception("Product not found.");
+            }
+
+            var orderItem = new OrderItem
+            {
+                OrderId = orderItemDto.OrderId,
+                ProductId = orderItemDto.ProductId,
+                Amount = orderItemDto.Amount,
+                Price = product.Price
+            };
+            await _context.OrderItems.AddAsync(orderItem);
+            await _context.SaveChangesAsync();
+
+            decimal totalPrice = await _context.OrderItems
+                .Where(oi => oi.OrderId == orderItemDto.OrderId)
+                .SumAsync(oi => oi.Amount);
+
+            order.TotalPrice = totalPrice;
+            _context.Orders.Update(order);
+            await _context.SaveChangesAsync();
+
+            return orderItem.OrderItemId;
+        }
+
         public async Task DeleteOrderItem(int id)
         {
             var deleteOrderItem = _context.OrderItems!.SingleOrDefault(oi => oi.OrderItemId == id);

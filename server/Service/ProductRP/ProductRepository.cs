@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
 using server.Models.Entities;
-using System;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace server.Service.ProductInterface
 {
@@ -19,10 +18,12 @@ namespace server.Service.ProductInterface
             _mapper = mapper;
         }
 
-        public async Task<Product> AddProductAsync(ProductViewModel productViewModel)
+        public async Task<int> AddProductAsync(ProductViewModel productViewModel)
         {
             var newProduct = _mapper.Map<Product>(productViewModel);
             newProduct.Sku = GenerateSku(productViewModel);
+            newProduct.Category = null; //không thêm mới thực thể
+
             _context.Products.Add(newProduct);
             await _context.SaveChangesAsync();
 
@@ -49,7 +50,7 @@ namespace server.Service.ProductInterface
             }
 
             await _context.SaveChangesAsync();
-            return newProduct;
+            return newProduct.ProductId;
         }
 
         public async Task<Product> DeleteProductsAsync(int id)
@@ -142,13 +143,12 @@ namespace server.Service.ProductInterface
                 SizeName = p.ProductSizes.FirstOrDefault()?.Size.Name 
             }).ToList();
 
-
             return productViewModels;
         }
 
-        public async Task<Product> GetProductAsync(int id)
+        public async Task<Product?> GetProductAsync(int id)
         {
-            return await _context.Products.Where(p => p.ProductId == id).FirstOrDefaultAsync();
+            return await _context.Products!.SingleOrDefaultAsync(p => p.ProductId == id);
         }
 
         public string GenerateSku(ProductViewModel productViewModel)
@@ -190,7 +190,6 @@ namespace server.Service.ProductInterface
                 { 1, "S" },  // Small
                 { 2, "M" },  // Medium
                 { 3, "L" },   // Large
-                { 4, "XL" }   // X-Large
             };
 
             return sizeId.HasValue && sizeDictionary.ContainsKey(sizeId.Value) ? sizeDictionary[sizeId.Value] : "XX"; // Default là "XX"

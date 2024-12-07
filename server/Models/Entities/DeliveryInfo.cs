@@ -6,12 +6,23 @@ namespace server.Models.Entities
     {
         [Key]
         public int DeliveryInfoId { get; set; }
-        public int OrderId { get; set; }
+
+        [Required]
+        [MaxLength(250)]
         public string Address { get; set; }
+
+        [Required]
+        [MaxLength(15)]
         public string Phone { get; set; }
+
+        [EmailAddress]
+        [MaxLength(100)]
         public string Email { get; set; }
-        public string Status { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string ReceiverName { get; set; }
-        public Order Order { get; set; }
+
+        public ICollection<DeliveryHistory> DeliveryHistories { get; set; }
     }
 }

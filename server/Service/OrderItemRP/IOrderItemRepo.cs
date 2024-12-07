@@ -7,6 +7,7 @@ namespace server.Service.OrderItemRP
     {
         Task<IEnumerable<OrderItem>> GetAllOrderItems();
         Task<OrderItem?> GetOrderItemById(int id);
+        Task<int> AddOrderItemAsync(OrderItemDto orderItemDto);
         Task UpdateOrderItem(int id, OrderItemDto orderItemDto);
         Task DeleteOrderItem(int id);
     }

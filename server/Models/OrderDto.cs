@@ -1,4 +1,6 @@
-﻿namespace server.Models
+﻿using server.Models.Entities;
+
+namespace server.Models
 {
     public class OrderDto
     {
@@ -7,7 +9,7 @@
         public string OrderCode { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime OrderDate { get; set; }
-        public decimal Amount { get; set; }
+        public decimal TotalAmount { get; set; }
         public string Status { get; set; }
     }
 }

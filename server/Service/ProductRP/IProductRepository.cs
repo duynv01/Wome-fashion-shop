@@ -5,9 +5,9 @@ namespace server.Service
 {
     public interface IProductRepository
     {
-        Task<Product> AddProductAsync(ProductViewModel productViewModel);
+        Task<int> AddProductAsync(ProductViewModel productViewModel);
         Task<List<ProductViewModel>> GetAllProductsAsync();
-        Task<Product> GetProductAsync(int id);
+        Task<Product?> GetProductAsync(int id);
         Task<IEnumerable<Product>> FindProductsAsync(string sku, decimal? from, decimal? to, string sortBy);
         Task<Product> DeleteProductsAsync(int id);
         Task UpdateProductsAsync(int id, ProductViewModel productViewModel);

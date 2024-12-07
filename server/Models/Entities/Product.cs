@@ -16,6 +16,7 @@ namespace server.Models.Entities
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
         public int CategoryId { get; set; }
+        public string? ImagePath { get; set; }
 
         public Category Category { get; set; } // Điều hướng tới Category
         public ICollection<ProductColor> ProductColors { get; set; }

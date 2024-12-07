@@ -12,5 +12,6 @@ namespace server.Service.UserInterface
         Task AddUser(User user);
         Task UpdateUser(User user);
         Task UpdateUserDto(int id, UpdateUserDto updateUserDto);
+        Task<int> GetUserCountByRoleAsync(DateTime? fromDate, DateTime? toDate);
     }
 }

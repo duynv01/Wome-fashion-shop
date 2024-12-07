@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace server.Migrations
 {
-    public partial class intitial : Migration
+    public partial class updateStatus : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,6 +33,22 @@ namespace server.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Colors", x => x.ColorId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DeliveryInfos",
+                columns: table => new
+                {
+                    DeliveryInfoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ReceiverName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeliveryInfos", x => x.DeliveryInfoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,9 +85,9 @@ namespace server.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Fullname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
@@ -93,7 +109,8 @@ namespace server.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     StockQuantity = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -117,7 +134,8 @@ namespace server.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -183,26 +201,37 @@ namespace server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DeliveryInfos",
+                name: "DeliveryHistories",
                 columns: table => new
                 {
-                    DeliveryInfoId = table.Column<int>(type: "int", nullable: false)
+                    DeliveryHistoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    DeliveryInfoId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReceiverName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DeliveryInfos", x => x.DeliveryInfoId);
+                    table.PrimaryKey("PK_DeliveryHistories", x => x.DeliveryHistoryId);
                     table.ForeignKey(
-                        name: "FK_DeliveryInfos_Orders_OrderId",
+                        name: "FK_DeliveryHistories_DeliveryInfos_DeliveryInfoId",
+                        column: x => x.DeliveryInfoId,
+                        principalTable: "DeliveryInfos",
+                        principalColumn: "DeliveryInfoId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DeliveryHistories_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DeliveryHistories_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -233,10 +262,40 @@ namespace server.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Colors",
+                columns: new[] { "ColorId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Black" },
+                    { 2, "White" },
+                    { 3, "Brown" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Sizes",
+                columns: new[] { "SizeId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Small" },
+                    { 2, "Medium" },
+                    { 3, "Large" }
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_DeliveryInfos_OrderId",
-                table: "DeliveryInfos",
+                name: "IX_DeliveryHistories_DeliveryInfoId",
+                table: "DeliveryHistories",
+                column: "DeliveryInfoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeliveryHistories_OrderId",
+                table: "DeliveryHistories",
                 column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeliveryHistories_UserId",
+                table: "DeliveryHistories",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
@@ -288,7 +347,7 @@ namespace server.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DeliveryInfos");
+                name: "DeliveryHistories");
 
             migrationBuilder.DropTable(
                 name: "Images");
@@ -301,6 +360,9 @@ namespace server.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductSizes");
+
+            migrationBuilder.DropTable(
+                name: "DeliveryInfos");
 
             migrationBuilder.DropTable(
                 name: "Orders");

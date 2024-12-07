@@ -37,25 +37,25 @@ namespace server.Controllers
             return Ok(size);
         }
 
-        [HttpPost]
-        public ActionResult<Sizes> AddSize(SizeDto sizeDto)
-        {
-            _sizeRepo.AddSize(sizeDto);
-            return CreatedAtAction(nameof(GetSize), new { id = sizeDto.SizeId }, sizeDto);
-        }
+        //[HttpPost]
+        //public ActionResult<Sizes> AddSize(SizeDto sizeDto)
+        //{
+        //    _sizeRepo.AddSize(sizeDto);
+        //    return CreatedAtAction(nameof(GetSize), new { id = sizeDto.SizeId }, sizeDto);
+        //}
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSize(int id, [FromBody] SizeDto sizeDto)
-        {
-            await _sizeRepo.UpdateSize(id, sizeDto);
-            return Ok();
-        }
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> UpdateSize(int id, [FromBody] SizeDto sizeDto)
+        //{
+        //    await _sizeRepo.UpdateSize(id, sizeDto);
+        //    return Ok();
+        //}
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSize(int id)
-        {
-            await _sizeRepo.DeleteSize(id);
-            return Ok();
-        }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteSize(int id)
+        //{
+        //    await _sizeRepo.DeleteSize(id);
+        //    return Ok();
+        //}
     }
 }

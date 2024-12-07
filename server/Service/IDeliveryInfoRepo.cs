@@ -5,8 +5,7 @@ namespace server.Service
 {
     public interface IDeliveryInfoRepo
     {
-        Task<List<DeliveryInfo>> GetAllDeliveryInfos();
-        Task<DeliveryInfo?> GetDeliveryInfoById(int id);
-        Task UpdateDeliveryInfo (int id, string newStatus);
+        Task<IEnumerable<DeliveryInfo>> GetAllDeliveryInfosAsync();
+        Task<DeliveryInfo?> GetDeliveryInfoAsync(int id);
     }
 }

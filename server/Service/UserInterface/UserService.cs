@@ -20,27 +20,22 @@ namespace server.Service
             _context = context;
             _mapper = mapper;
         }
-
-        // Lấy người dùng bằng Username
         public async Task<User?> GetUserByUsername(string username)
         {
             return await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
         }
 
-        // Lấy người dùng bằng Email
         public async Task<User?> GetUserByEmail(string email)
         {
             return await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
         }
 
-        // Thêm người dùng mới
         public async Task AddUser(User user)
         {
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
         }
 
-        // Cập nhật thông tin người dùng
         public async Task UpdateUser(User user)
         {
             _context.Users.Update(user);
@@ -75,6 +70,16 @@ namespace server.Service
                 user.Phone = updateUserDto.Phone;
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> GetUserCountByRoleAsync(DateTime? fromDate, 
+                                                       DateTime? toDate)
+        {
+            return await _context.Users
+                            .Where(u => u.Role == "User"
+                                && u.CreatedAt >= fromDate
+                                && u.CreatedAt <= toDate)
+                            .CountAsync();
         }
     }
 }

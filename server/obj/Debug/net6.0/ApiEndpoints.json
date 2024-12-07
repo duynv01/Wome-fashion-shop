@@ -173,53 +173,109 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "server.Controllers.ColorController",
-    "Method": "UpdateColorAsync",
-    "RelativePath": "api/Color/{id}",
-    "HttpMethod": "PUT",
+    "ContainingType": "server.Controllers.DashBoardController",
+    "Method": "GetUserCountByRoleAsync",
+    "RelativePath": "api/DashBoard/customers/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fromDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "toDate",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.DashBoardController",
+    "Method": "GetRevenuaStatics",
+    "RelativePath": "api/DashBoard/statics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fromDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "toDate",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.DeliveryHistoryController",
+    "Method": "GetAllDeliveryHistoriesAsync",
+    "RelativePath": "api/DeliveryHistory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[server.Models.Entities.DeliveryHistory, server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "server.Controllers.DeliveryHistoryController",
+    "Method": "GetDeliveryHistoryAsync",
+    "RelativePath": "api/DeliveryHistory/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "server.Models.Entities.DeliveryHistory",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "server.Controllers.DeliveryHistoryController",
+    "Method": "UpdateDeliveryStatusAsync",
+    "RelativePath": "api/DeliveryHistory/update-status/{deliveryHistoryId}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "deliveryHistoryId",
         "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "colorDto",
-        "Type": "server.Models.ColorDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "server.Controllers.ColorController",
-    "Method": "DeleteColorAsync",
-    "RelativePath": "api/Color/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "server.Controllers.ColorController",
-    "Method": "AddColorAsync",
-    "RelativePath": "api/Color/add",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "colorDto",
-        "Type": "server.Models.ColorDto",
+        "Name": "newStatus",
+        "Type": "server.Models.Entities.DeliveryStatus",
         "IsRequired": true
       }
     ],
@@ -227,17 +283,27 @@
   },
   {
     "ContainingType": "server.Controllers.DeliveryInfoController",
-    "Method": "GetAllDeliveryInfos",
+    "Method": "GetAllDeliveryInfosAsync",
     "RelativePath": "api/DeliveryInfo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[server.Models.Entities.DeliveryInfo, server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "server.Controllers.DeliveryInfoController",
-    "Method": "GetDeliveryInfoById",
+    "Method": "GetDeliveryHistoryAsync",
     "RelativePath": "api/DeliveryInfo/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -249,28 +315,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "server.Controllers.DeliveryInfoController",
-    "Method": "UpdateDeliveryInfo",
-    "RelativePath": "api/DeliveryInfo/updateStatus",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "newStatus",
-        "Type": "System.String",
-        "IsRequired": false
+        "Type": "server.Models.Entities.DeliveryInfo",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
     "ContainingType": "server.Controllers.ImageController",
@@ -523,6 +578,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "server.Controllers.OrderItemController",
+    "Method": "AddOrderItemAsync",
+    "RelativePath": "api/OrderItem/add-orderItem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderItemDto",
+        "Type": "server.Models.OrderItemDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "server.Models.Entities.Order",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "server.Controllers.ProductController",
     "Method": "GetAllProductsAsync",
     "RelativePath": "api/Product",
@@ -633,6 +714,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "server.Controllers.ProductController",
+    "Method": "UploadImage",
+    "RelativePath": "api/Product/upload-image",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "server.Controllers.ProductController\u002BImageUploadRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "server.Controllers.SizeController",
     "Method": "GetAllSizes",
     "RelativePath": "api/Size",
@@ -643,32 +740,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[server.Models.Entities.Sizes, server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "server.Controllers.SizeController",
-    "Method": "AddSize",
-    "RelativePath": "api/Size",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "sizeDto",
-        "Type": "server.Models.SizeDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "server.Models.Entities.Sizes",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -703,43 +774,6 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "server.Controllers.SizeController",
-    "Method": "UpdateSize",
-    "RelativePath": "api/Size/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "sizeDto",
-        "Type": "server.Models.SizeDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "server.Controllers.SizeController",
-    "Method": "DeleteSize",
-    "RelativePath": "api/Size/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "server.Controllers.UserController",
