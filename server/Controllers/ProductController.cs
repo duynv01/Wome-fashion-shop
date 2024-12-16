@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Asn1.Ocsp;
+using server.Data;
 using server.Models;
+using server.Models.Entities;
 using server.Service;
 
 namespace server.Controllers
@@ -11,6 +14,7 @@ namespace server.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly IWebHostEnvironment _env;
+        private readonly AppDbContext _context;
 
         public ProductController(IProductRepository productRepository, IWebHostEnvironment env)
         {
@@ -53,68 +57,98 @@ namespace server.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<ActionResult> AddProductAsync(ProductViewModel productViewModel)
+        public IActionResult AddProduct([FromForm] ProductViewModel product)
         {
-            if (productViewModel == null || string.IsNullOrEmpty(productViewModel.Name) || productViewModel.Price <= 0)
-            {
-                return BadRequest("Invalid product data. Name and price are required.");
-            }
+            var imageUrls = new List<ProductImage>();
 
-            try
+            // Lưu các ảnh mới
+            if (product.NewImages != null)
             {
-                var newProductId = await _productRepository.AddProductAsync(productViewModel);
-                var product = await _productRepository.GetProductAsync(newProductId);
-
-                if (product == null)
+                foreach (var image in product.NewImages)
                 {
-                    return NotFound("Product not found after creation.");
+                    var imagePath = Path.Combine("wwwroot/images", image.FileName);
+                    using (var stream = new FileStream(imagePath, FileMode.Create))
+                    {
+                        image.CopyTo(stream);
+                    }
+
+                    imageUrls.Add(new ProductImage
+                    {
+                        ImageUrl = $"/images/{image.FileName}"
+                    });
                 }
-                return Ok(product);
             }
-            catch (Exception ex)
+
+            var newProduct = new Product
             {
-                return StatusCode(500, "Internal server error: " + ex.Message);
-            }
-        }
+                Sku = product.Sku,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                StockQuantity = product.StockQuantity,
+                CategoryId = product.CategoryId,
+                ProductImages = imageUrls
+            };
 
-        [HttpPost("upload-image")]
-        public async Task<IActionResult> UploadImage([FromBody] ImageUploadRequest request)
-        {
-            if (string.IsNullOrEmpty(request.ImageBase64))
-            {
-                return BadRequest("No image data provided.");
-            }
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
 
-            try
-            {
-                // Chuyển đổi base64 thành byte[]
-                var imageBytes = Convert.FromBase64String(request.ImageBase64);
-
-                var fileName = Guid.NewGuid().ToString() + ".jpg";
-
-                // Lưu ảnh vào thư mục uploads
-                var filePath = Path.Combine(_env.WebRootPath, "uploads", fileName);
-                await System.IO.File.WriteAllBytesAsync(filePath, imageBytes);
-
-                // Trả về đường dẫn ảnh
-                var imageUrl = "/uploads/" + fileName;
-                return Ok(new { imageUrl });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Internal server error: " + ex.Message);
-            }
-        }
-        public class ImageUploadRequest
-        {
-            public string ImageBase64 { get; set; }
+            return Ok(new { message = "Thêm sản phẩm thành công", product = newProduct });
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProductsAsync(int id, [FromBody] ProductViewModel productViewModel)
+        public IActionResult UpdateProduct(int id, [FromForm] ProductViewModel product)
         {
-            await _productRepository.UpdateProductsAsync(id, productViewModel);
-            return Ok(productViewModel);
+            var existingProduct = _context.Products
+                .Include(p => p.ProductImages)
+                .FirstOrDefault(p => p.ProductId == id);
+
+            if (existingProduct == null)
+            {
+                return NotFound(new { message = "Không thấy sản phẩm" });
+            }
+
+            // Cập nhật thông tin sản phẩm
+            existingProduct.Sku = product.Sku;
+            existingProduct.Name = product.Name;
+            existingProduct.Description = product.Description;
+            existingProduct.Price = product.Price;
+            existingProduct.StockQuantity = product.StockQuantity;
+            existingProduct.CategoryId = product.CategoryId;
+
+            // Xóa ảnh cũ
+            if (product.DeletedImageIds != null)
+            {
+                var imagesToDelete = existingProduct.ProductImages
+                    .Where(pi => product.DeletedImageIds.Contains(pi.ProductImageId)).ToList();
+
+                foreach (var image in imagesToDelete)
+                {
+                    var imagePath = Path.Combine("wwwroot", image.ImageUrl.TrimStart('/'));
+                    if (System.IO.File.Exists(imagePath))
+                        System.IO.File.Delete(imagePath);
+
+                    existingProduct.ProductImages.Remove(image);
+                }
+            }
+            if (product.NewImages != null)
+            {
+                foreach (var image in product.NewImages)
+                {
+                    var imagePath = Path.Combine("wwwroot/images", image.FileName);
+                    using (var stream = new FileStream(imagePath, FileMode.Create))
+                    {
+                        image.CopyTo(stream);
+                    }
+
+                    existingProduct.ProductImages.Add(new ProductImage
+                    {
+                        ImageUrl = $"/images/{image.FileName}"
+                    });
+                }
+            }
+            _context.SaveChanges();
+            return Ok(new { message = "Product updated successfully", product = existingProduct });
         }
     }
 }

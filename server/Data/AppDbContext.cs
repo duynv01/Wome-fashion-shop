@@ -22,6 +22,7 @@
         public DbSet<Sizes> Sizes { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<DeliveryInfo> DeliveryInfos { get; set; }
         public DbSet<DeliveryHistory> DeliveryHistories { get; set; }
@@ -117,6 +118,11 @@
                 .WithMany(c => c.Products) 
                 .HasForeignKey(p => p.CategoryId)
                 .IsRequired();
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.ProductImages)
+                .WithOne(pi => pi.Product)
+                .HasForeignKey(pi => pi.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<OrderItem>()
                 .HasKey(oi => oi.OrderItemId);
