@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Drawer, Button, List, InputNumber } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+
 
 const CartDrawer = () => {
     const [visible, setVisible] = useState(false);
@@ -121,10 +123,21 @@ const CartDrawer = () => {
                                 <strong>Tổng tiền:</strong>{' '}
                                 {totalPrice.toLocaleString()} ₫
                             </p>
-                            <Button type="primary" style={{ marginRight: '8px' }}>
-                                Mua thêm
-                            </Button>
-                            <Button type="danger" style={{ backgroundColor: 'red'}}>Mua ngay</Button>
+                            <div style={{ display: "flex" }}>
+                                <Button type="primary" style={{ marginRight: '8px' }}>
+                                    Mua thêm
+                                </Button>
+                                <div>
+                                    <Link to="/checkout">
+                                        <Button type="danger" style={{ backgroundColor: 'red'}}>Mua ngay</Button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <Link to="/cart">
+                                <Button type="link">Xem giỏ hàng</Button>
+                            </Link>
                         </div>
                     </>
                 )}

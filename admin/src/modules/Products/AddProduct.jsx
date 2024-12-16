@@ -10,7 +10,7 @@ const AddProduct = () => {
   const [form] = Form.useForm();
 
   const handleAddColor = () => {
-    setColors([...colors, { key: colors.length + 1, color: '', size: '', quantity: 1 }]);
+    setColors([...colors, { key: colors.length + 1, color: [], size: [], quantity: 1 }]);
   };
 
   const handleDeleteColor = (key) => {
@@ -18,54 +18,6 @@ const AddProduct = () => {
   };
 
   const columns = [
-    {
-      title: 'Màu',
-      dataIndex: 'color',
-      key: 'color',
-      render: (_, record) => (
-        <Select
-          placeholder="Chọn màu"
-          onChange={(value) => updateColor(record.key, 'color', value)}
-          style={{ width: '100%' }}
-        >
-          <Option value="red">Đỏ</Option>
-          <Option value="blue">Xanh dương</Option>
-          <Option value="green">Xanh lá</Option>
-          {/* Thêm các màu khác ở đây */}
-        </Select>
-      ),
-    },
-    {
-      title: 'Size',
-      dataIndex: 'size',
-      key: 'size',
-      render: (_, record) => (
-        <Select
-          placeholder="Chọn size"
-          onChange={(value) => updateColor(record.key, 'size', value)}
-          style={{ width: '100%' }}
-        >
-          <Option value="S">S</Option>
-          <Option value="M">M</Option>
-          <Option value="L">L</Option>
-          <Option value="XL">XL</Option>
-          {/* Thêm các size khác ở đây */}
-        </Select>
-      ),
-    },
-    {
-      title: 'Số lượng',
-      dataIndex: 'quantity',
-      key: 'quantity',
-      render: (_, record) => (
-        <Input
-          type="number"
-          min={1}
-          defaultValue={1}
-          onChange={(e) => updateColor(record.key, 'quantity', e.target.value)}
-        />
-      ),
-    },
     {
       title: 'Action',
       key: 'action',
@@ -98,7 +50,7 @@ const AddProduct = () => {
       <Form.Item label="Tên sản phẩm" name="name" rules={[{ required: true, message: 'Vui lòng nhập tên sản phẩm' }]}>
         <Input placeholder="Nhập tên sản phẩm" />
       </Form.Item>
-      
+
       <Form.Item label="Mã sản phẩm" name="code" rules={[{ required: true, message: 'Vui lòng nhập mã sản phẩm' }]}>
         <Input placeholder="Nhập mã sản phẩm" />
       </Form.Item>
@@ -118,20 +70,42 @@ const AddProduct = () => {
 
       <Form.Item label="Ảnh mẫu" name="image">
         <Upload listType="picture" maxCount={1}>
-          <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
+          <Button icon={<UploadOutlined />}>Tải các ảnh lên</Button>
         </Upload>
       </Form.Item>
 
-      <Table
-        columns={columns}
-        dataSource={colors}
-        pagination={false}
-        rowKey="key"
-      />
-      <Button type="dashed" onClick={handleAddColor} style={{ width: '100%', marginTop: '16px' }}>
-        <PlusOutlined /> Thêm màu
-      </Button>
+      <Form.Item label="Số lượng sản phẩm" name="total" rules={[{ required: true, message: 'Vui lòng nhập số lượng sản phẩm' }]}>
+        <Input placeholder="Nhập số lượng sản phẩm" />
+      </Form.Item>
 
+      {/* Màu và Size - không hiển thị trong bảng */}
+      <Form.Item label="Màu sản phẩm" name="colors" rules={[{ required: true }]}>
+        <Select
+          mode="multiple"
+          placeholder="Chọn màu"
+          onChange={(value) => setColors(value)}
+          style={{ width: '100%' }}
+        >
+          <Option value="red">Đỏ</Option>
+          <Option value="blue">Xanh dương</Option>
+          <Option value="green">Xanh lá</Option>
+          {/* Thêm các màu khác ở đây */}
+        </Select>
+      </Form.Item>
+
+      <Form.Item label="Size sản phẩm" name="sizes" rules={[{ required: true }]}>
+        <Select
+          mode="multiple"
+          placeholder="Chọn size"
+          style={{ width: '100%' }}
+        >
+          <Option value="S">S</Option>
+          <Option value="M">M</Option>
+          <Option value="L">L</Option>
+          <Option value="XL">XL</Option>
+          {/* Thêm các size khác ở đây */}
+        </Select>
+      </Form.Item>
       <Form.Item style={{ marginTop: '16px' }}>
         <Button type="primary" htmlType="submit">
           Thêm sản phẩm

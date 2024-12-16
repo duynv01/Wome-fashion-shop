@@ -68,18 +68,6 @@ const Dashboard = () => {
             <Title level={3}>{mockData.totalRevenue}</Title>
           </Card>
         </Col>
-        <Col span={6}>
-          <Card>
-            <Text>Đơn hàng đã gửi</Text>
-            <Title level={3}>{mockData.deliveredCodes}</Title>
-          </Card>
-        </Col>
-        <Col span={6}>
-          <Card>
-            <Text>Khách hàng mới</Text>
-            <Title level={3}>{mockData.newCustomers}</Title>
-          </Card>
-        </Col>
       </Row>
 
       {/* Biểu đồ Order */}

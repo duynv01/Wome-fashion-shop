@@ -1,0 +1,10 @@
+#root {
+    background-color: white;
+}
+.check-out .header {
+    position: fixed;
+    z-index: 1000;
+}
+.check-out .footer {
+    padding: 0;
+}

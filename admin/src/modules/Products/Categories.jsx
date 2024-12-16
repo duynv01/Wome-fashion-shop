@@ -4,9 +4,9 @@ import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 
 const Categories = () => {
   const [categories, setCategories] = useState([
-    { id: 1, name: 'Áo', code: 'Shirt01' },
-    { id: 2, name: 'Váy', code: 'Dress01' },
-    { id: 3, name: 'Quần', code: 'Pants01' },
+    { id: 1, name: 'Áo'},
+    { id: 2, name: 'Váy'},
+    { id: 3, name: 'Quần'},
   ]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -34,7 +34,6 @@ const Categories = () => {
   const columns = [
     { title: '#', dataIndex: 'id', key: 'id' },
     { title: 'Tên', dataIndex: 'name', key: 'name' },
-    { title: 'Mã', dataIndex: 'code', key: 'code' },
     {
       title: '',
       key: 'action',
@@ -88,13 +87,6 @@ const Categories = () => {
             rules={[{ required: true, message: 'Vui lòng nhập tên danh mục' }]}
           >
             <Input placeholder="Nhập tên danh mục" />
-          </Form.Item>
-          <Form.Item
-            name="code"
-            label="Mã danh mục"
-            rules={[{ required: true, message: 'Vui lòng nhập mã danh mục' }]}
-          >
-            <Input placeholder="Nhập mã danh mục" />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">

@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Table, Space, Button, Input, Select } from 'antd';
 import { Link } from 'react-router-dom';
-import productAImage from '../../assets/5.jpeg';
 
 const { Option } = Select;
 
@@ -19,7 +18,7 @@ const ProductList = () => {
       category: 'Váy',
       soldQuantity: 999,
       inventory: 15,
-      image: productAImage,
+      image: 'https://pos.nvncdn.com/b153ea-53436/ps/20241018_7PYXHYEqT3.jpeg',
     },
     {
       productId: '2',
@@ -29,7 +28,7 @@ const ProductList = () => {
       category: 'Quần',
       soldQuantity: 9999,
       inventory: 190,
-      image: productAImage,
+      image: 'https://pos.nvncdn.com/b153ea-53436/ps/20241014_X2XL3Ch6Uy.jpeg',
     },
     // Additional products here...
   ]);

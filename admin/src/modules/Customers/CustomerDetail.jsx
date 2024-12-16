@@ -17,17 +17,17 @@ const CustomerDetail = () => {
       // Giả lập dữ liệu khách hàng
       const mockCustomers = {
         '1': {
-          name: 'John Doe',
-          email: 'john@example.com',
+          name: 'Mai Phương Anh',
+          email: 'stu715105011@hnue.edu.vn',
           phone: '123456789',
-          address: '123 Main St, Springfield',
+          address: '136 Xuân Thủy',
           orders: 5,
         },
         '2': {
-          name: 'Jane Smith',
-          email: 'jane@example.com',
+          name: 'Trần Thái Dương',
+          email: 'thaiduongjr4@gmail.com',
           phone: '987654321',
-          address: '456 Elm St, Springfield',
+          address: '13 Hàng Chuối',
           orders: 3,
         },
       };
@@ -105,15 +105,6 @@ const CustomerDetail = () => {
           </div>
         </Col>
       </Row>
-      <div style={{ marginTop: '20px', textAlign: 'center' }}>
-        <Button 
-          type="primary" 
-          onClick={isEditing ? handleSave : handleEdit}
-          style={{ marginRight: '10px' }}
-        >
-          {isEditing ? 'Lưu' : 'Chỉnh sửa'}
-        </Button>
-      </div>
     </div>
   );
 };

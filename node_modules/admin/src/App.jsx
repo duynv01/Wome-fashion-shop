@@ -43,28 +43,28 @@ const App = () => {
     document.body.className = isAuthenticated ? 'dashboard-background' : 'login-background';
   }, [isAuthenticated]);
 
-  const [idleTimer, setIdleTimer] = useState(null);
+  // const [idleTimer, setIdleTimer] = useState(null);
 
-  const resetIdleTimer = () => {
-    if (idleTimer) clearTimeout(idleTimer);
+  // const resetIdleTimer = () => {
+  //   if (idleTimer) clearTimeout(idleTimer);
 
-    setIdleTimer(setTimeout(() => {
-      alert("Bạn đã bị đăng xuất do không hoạt động trong 5 phút!");
-    }, 5 * 60 * 1000));
-  };
+  //   setIdleTimer(setTimeout(() => {
+  //     alert("Bạn đã bị đăng xuất do không hoạt động trong 5 phút!");
+  //   }, 5 * 60 * 1000));
+  // };
 
-  useEffect(() => {
-    const activityEvents = ['click', 'keypress', 'mousemove'];
-    activityEvents.forEach((event) => {
-      window.addEventListener(event, resetIdleTimer);
-    });
+  // useEffect(() => {
+  //   const activityEvents = ['click', 'keypress', 'mousemove'];
+  //   activityEvents.forEach((event) => {
+  //     window.addEventListener(event, resetIdleTimer);
+  //   });
 
-    return () => {
-      activityEvents.forEach((event) => {
-        window.removeEventListener(event, resetIdleTimer);
-      });
-    };
-  }, [idleTimer]);
+  //   return () => {
+  //     activityEvents.forEach((event) => {
+  //       window.removeEventListener(event, resetIdleTimer);
+  //     });
+  //   };
+  // }, [idleTimer]);
 
   return (
     <Routes>
@@ -74,7 +74,7 @@ const App = () => {
       />
       <Route 
         path="*"
-        element={isAuthenticated ? <DashboardLayout onLogout={handleLogout} /> : <Navigate to="/" />}
+        element={isAuthenticated ? <DashboardLayout/> : <Navigate to="/" />}
       >
         <Route path="account" element={<AccountPage />} />
         <Route path="dashboard" element={<Dashboard />} />

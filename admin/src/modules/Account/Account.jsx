@@ -99,13 +99,6 @@ const Account = () => {
           >
             <Input />
           </Form.Item>
-          <Form.Item
-            name="email"
-            label="Email"
-            rules={[{ required: true, message: 'Vui lòng nhập email!' }, { type: 'email', message: 'Email không hợp lệ!' }]}
-          >
-            <Input />
-          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" style={{ backgroundColor: 'black', color: 'white' }}>
               Lưu

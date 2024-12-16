@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="footer-top">
         <Row gutter={[32, 16]} justify="center">
           <Col xs={24} sm={12} md={8} lg={6} className="footer-column">
-            <h3 className="footer-title">FIVE M FASHION</h3>
+            <h3 className="footer-title">FIVEM FASHION</h3>
             <p className="footer-text">Địa chỉ: Số 136, Xuân Thủy, Hà Nội</p>
             <p className="footer-text">Điện thoại: 0979026052</p>
             <p className="footer-text">Email: stu715105011@hnue.edu.vn</p>

@@ -7,14 +7,14 @@ const CustomerList = () => {
   const customers = [
     {
       id: '1',
-      name: 'John Doe',
-      email: 'john@example.com',
+      name: 'Mai Phương Anh',
+      email: 'stu715105011@hnue.edu.vn',
       phone: '123456789',
     },
     {
       id: '2',
-      name: 'Jane Smith',
-      email: 'jane@example.com',
+      name: 'Trần Thái Dương',
+      email: 'thaiduongjr4@gmail.com',
       phone: '987654321',
     },
     // Thêm nhiều khách hàng nữa ở đây

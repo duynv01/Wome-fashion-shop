@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, Space, Drawer, Input, Button } from 'antd';
 import { UserOutlined, SearchOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import CartDrawer from '../../CartDrawer/CartDrawer';
+import CartDrawer from '../../Cart/CartDrawer';
 
 const Header = () => {
     const [visibleSearch, setVisibleSearch] = useState(false);
@@ -21,7 +21,7 @@ const Header = () => {
                 {/* Logo */}
                 <div className="logo" style={logoStyles}>
                     <Link to="/">
-                        <img src="YOUR_LOGO_URL" alt="FiveM Fashion" style={{ height: '50px' }} />
+                        <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/467480380_1586263965344470_6165405973771492692_n.png?_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeHg6RuzeaoqE50Tv_uUfRumLqY0vnwC_e4upjS-fAL97r6CKKjcDEqqR9R21dyxeRRbipHiPFSoGLUpf-53AD_q&_nc_ohc=9pvhetGnldkQ7kNvgFgo0uH&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QF0UaEP1CoQRIltDs8fSluwbuyuQ8uubgf-5Jg6F47VlQ&oe=67865645" alt="FiveM Fashion" style={{ height: '50px' }} />
                     </Link>
                 </div>
 
@@ -48,7 +48,7 @@ const Header = () => {
 
             {/* Drawer cho tìm kiếm */}
             <Drawer
-                title="Search"
+                title="Tìm kiếm"
                 placement="right"
                 closable={true}
                 onClose={onCloseSearch}
@@ -56,8 +56,8 @@ const Header = () => {
                 key="right"
             >
                 <Space direction="vertical">
-                    <Input placeholder="Search" />
-                    <Button type="primary">Search</Button>
+                    <Input placeholder="Tìm Kiếm" />
+                    <Button type="primary">Tìm Kiếm</Button>
                 </Space>
             </Drawer>
         </header>

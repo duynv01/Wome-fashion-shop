@@ -1,0 +1,29 @@
+.profile .ant-card {
+    box-shadow: none;
+}
+
+.profile .ant-card-head {
+    border-bottom: 1px solid black;
+    font-size: 1.5rem;
+}
+
+.profile .ant-card-body {
+    text-align: center;
+    .ant-typography {
+        font-size: 1.2rem;
+    }
+}
+
+
+.profile .footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 0;
+    .ant-col {
+        border: 0;
+    }
+}
+.profile .ant-col {
+    border: 1px solid;
+}

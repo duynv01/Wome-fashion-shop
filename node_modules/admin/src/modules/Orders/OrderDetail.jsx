@@ -61,15 +61,15 @@ const OrderDetail = () => {
           <div style={{ border: '1px solid #f0f0f0', padding: '16px', borderRadius: '8px', backgroundColor: 'white' }}>
             <h3>Thông tin đơn hàng</h3>
             <p><strong>ID:</strong> {order.orderId}</p>
-            <p><strong>Total:</strong> {order.total}</p>
-            <p><strong>Items:</strong> {order.items.join(', ')}</p>
-            <p><strong>Customer:</strong> {order.customer}</p>
+            <p><strong>Tổng giá:</strong> {order.total}</p>
+            <p><strong>Sản phẩm:</strong> {order.items.join(', ')}</p>
+            <p><strong>Khách hàng:</strong> {order.customer}</p>
           </div>
         </Col>
         <Col span={12}>
           <div style={{ border: '1px solid #f0f0f0', padding: '16px', borderRadius: '8px', backgroundColor: 'white' }}>
             <h3>Thông tin giao hàng</h3>
-            <p><strong>Status:</strong> {isEditing ? (
+            <p><strong>Trạng thái:</strong> {isEditing ? (
               <Input 
                 value={status} 
                 onChange={(e) => setStatus(e.target.value)} 
@@ -78,7 +78,7 @@ const OrderDetail = () => {
             ) : (
               status
             )}</p>
-            <p><strong>Address:</strong> {isEditing ? (
+            <p><strong>Địa chỉ:</strong> {isEditing ? (
               <Input 
                 value={address} 
                 onChange={(e) => setAddress(e.target.value)} 
@@ -102,15 +102,6 @@ const OrderDetail = () => {
           </div>
         </Col>
       </Row>
-      <div style={{ marginTop: '20px', textAlign: 'center' }}>
-        <Button 
-          type="primary" 
-          onClick={isEditing ? handleSave : handleEdit}
-          style={{ marginRight: '10px' }}
-        >
-          {isEditing ? 'Lưu' : 'Chỉnh sửa'}
-        </Button>
-      </div>
     </div>
   );
 };

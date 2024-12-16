@@ -1,0 +1,28 @@
+body {
+   background-color: white;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+  }
+
+ .Cart-page .header {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  .Cart-page .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  .Cart-page .ant-col {
+    flex: none;
+  }

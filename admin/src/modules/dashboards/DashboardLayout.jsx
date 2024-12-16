@@ -19,7 +19,7 @@ const DashboardLayout = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible style={{ backgroundColor: 'white' }}>
         <div className="logo" style={{ height: '32px', margin: '16px', background: 'rgb(255, 255, 255)', fontWeight: 600, textAlign: 'center', fontSize: '32px' }}> 
-          FIVEM
+          <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/467480380_1586263965344470_6165405973771492692_n.png?_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeHg6RuzeaoqE50Tv_uUfRumLqY0vnwC_e4upjS-fAL97r6CKKjcDEqqR9R21dyxeRRbipHiPFSoGLUpf-53AD_q&_nc_ohc=9pvhetGnldkQ7kNvgFgo0uH&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QFLtr7FNJjSDnBCXO4m7KA1IfzmQjDpjegA6uj9kVaALQ&oe=6786FF05" alt="" style={{ width: '50px' }} />
         </div>
         <Menu theme="light" defaultSelectedKeys={['account']} mode="inline">
           <Menu.Item key="account" icon={<SettingOutlined />}>

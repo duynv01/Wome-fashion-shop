@@ -9,12 +9,14 @@ const OrderList = () => {
       orderId: '1',
       customer: 'Nguyễn Thị A',
       total: '200000 VNĐ',
+      orderCode: '986acbad',
       status: 'Chờ xác nhận',
     },
     {
       orderId: '2',
       customer: 'Nguyễn Thị B',
       total: '30000000 VNĐ',
+      orderCode: 'f166d467',
       status: 'Đang gửi',
     },
     // Thêm nhiều đơn hàng nữa ở đây
@@ -25,6 +27,11 @@ const OrderList = () => {
       title: '#',
       dataIndex: 'orderId',
       key: 'orderId',
+    },
+    {
+      title: 'Mã đơn hàng',
+      dataIndex: 'orderCode',
+      key: 'orderCode',
     },
     {
       title: 'Khách hàng',

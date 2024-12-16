@@ -9,25 +9,25 @@ const products = [
   {
     id: 1,
     title: 'Sơ mi',
-    image: 'https://pos.nvncdn.com/b153ea-53436/bn/20240423_vn4nc0MM.gif',
+    image: 'https://pos.nvncdn.com/b153ea-53436/ps/20241014_cAEGGZZs1N.jpeg',
     link: '/skirt',
   },
   {
     id: 2,
     title: 'Quần',
-    image: 'https://pos.nvncdn.com/b153ea-53436/bn/20240423_nKlp9URn.gif',
+    image: 'https://pos.nvncdn.com/b153ea-53436/ps/20241014_cAEGGZZs1N.jpeg',
     link: '/skirt',
   },
   {
     id: 4,
     title: 'Váy',
-    image: 'https://pos.nvncdn.com/b153ea-53436/bn/20240423_uhUbBJpI.gif',
+    image: 'https://pos.nvncdn.com/b153ea-53436/ps/20241014_cAEGGZZs1N.jpeg',
     link: '/floral-dress',
   },
   {
     id: 6,
     title: 'Áo thun',
-    image: 'https://pos.nvncdn.com/b153ea-53436/bn/20240423_NtN8lkih.gif',
+    image: 'https://pos.nvncdn.com/b153ea-53436/ps/20241014_cAEGGZZs1N.jpeg',
     link: '/chic-combo',
   },
 ];
